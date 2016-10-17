@@ -24,5 +24,9 @@ namespace wardrobe.Models
         public virtual Bottom Bottom { get; set; }
         public virtual Shoe Shoe { get; set; }
         public virtual Top Top { get; set; }
+        public virtual Accessory Accessory1 { get; set; }
+        public virtual Bottom Bottom1 { get; set; }
+        public virtual Shoe Shoe1 { get; set; }
+        public virtual Top Top1 { get; set; }
     }
 }

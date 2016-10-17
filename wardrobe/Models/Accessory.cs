@@ -14,6 +14,12 @@ namespace wardrobe.Models
     
     public partial class Accessory
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Accessory()
+        {
+            this.Wardrobes = new HashSet<Wardrobe>();
+        }
+    
         public int AccessorieID { get; set; }
         public string Name { get; set; }
         public string Photo { get; set; }
@@ -23,5 +29,7 @@ namespace wardrobe.Models
         public string Occasion { get; set; }
     
         public virtual Wardrobe Wardrobe { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Wardrobe> Wardrobes { get; set; }
     }
 }

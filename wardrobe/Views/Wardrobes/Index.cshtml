@@ -1,10 +1,11 @@
 ﻿@model IEnumerable<wardrobe.Models.Wardrobe>
 
 @{
-    ViewBag.Title = "Wardrobe Homepage";
+    ViewBag.Title = "Index";
 }
 
-<h2>Wardrobe</h2>
+<h2>Outfit of the Day</h2>
+<h3>#OOTD</h3>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -40,26 +41,45 @@
 
 @foreach (var item in Model)
 {
-    <div class="col-sm-6 col-md-4">
-        <div class="thumbnail">
-            <div class="caption">
-                @*@Html.DisplayFor(modelItem => item.TopID)
-                    @Html.DisplayFor(modelItem => item.BottomID)
-                    @Html.DisplayFor(modelItem => item.ShoeID)
-                    @Html.DisplayFor(modelItem => item.AccessorieID)*@
-                <h3>@Html.DisplayFor(modelItem => item.Accessory.Name)</h3>
-                <p>@Html.DisplayFor(modelItem => item.Bottom.Name)</p>
-                <p>@Html.DisplayFor(modelItem => item.Shoe.Name)</p>
-                <p>@Html.DisplayFor(modelItem => item.Top.Name)</p>
+    <div class="row">
+        <div class="col-md-4" id="reviewIndex">
+            <div class="thumbnail">
+                @Html.DisplayFor(modelItem => item.Top.Name)
+                @if (item.Top.Name == "Feathered Tee")
+                {
+                    <p><img src="~/Content/photos/tops/feathertee.jpg" /></p>
+                }
             </div>
+            <div class="thumbnail">
+                @Html.DisplayFor(modelItem => item.Bottom.Name)
+                @if (item.Bottom.Name == "Blacked-Out Super Skinny Jean")
+                {
+                    <p><img src="~/Content/photos/bottoms/blackskinnyjeans.jpg" /></p>
+                }
+            </div>
+            <div class="thumbnail">
+                @Html.DisplayFor(modelItem => item.Shoe.Name)
+                @if (item.Shoe.Name == "Killer Stilletto")
+                {
+                    <p><img src="~/Content/photos/shoes/stillettoheel.jpg" /></p>
+                }
+            </div>
+            <div class="thumbnail">
+                @Html.DisplayFor(modelItem => item.Accessory.Name)
+                @if (item.Accessory.Name == "Ray Ban Aviators")
+                {
+                    <p><img src="~/Content/photos/accessories/raybanavs.jpg" /></p>
+                }
+            </div>
+            @Html.ActionLink("Edit", "Edit", new { id = item.WardrobeID })
+            @Html.ActionLink("Details", "Details", new { id = item.WardrobeID })
+            @Html.ActionLink("Delete", "Delete", new { id = item.WardrobeID })
         </div>
     </div>
-
-
-    @*@Html.ActionLink("Edit", "Edit", new { id = item.WardrobeID }) |
-        @Html.ActionLink("Details", "Details", new { id = item.WardrobeID }) |
-        @Html.ActionLink("Delete", "Delete", new { id = item.WardrobeID })*@
-
 }
+
+
+
+
 
 

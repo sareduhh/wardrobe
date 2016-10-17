@@ -14,6 +14,11 @@
         <AssociationConnector Association="wardrobeModel.FK_Wardrobe_Bottom" ManuallyRouted="false" />
         <AssociationConnector Association="wardrobeModel.FK_Wardrobe_Shoe" ManuallyRouted="false" />
         <AssociationConnector Association="wardrobeModel.FK_Wardrobe_Top" ManuallyRouted="false" />
+        <AssociationConnector Association="wardrobeModel.FK_Wardrobe_Accessories1" />
+        <AssociationConnector Association="wardrobeModel.FK_Wardrobe_Bottom1" />
+        <AssociationConnector Association="wardrobeModel.FK_Wardrobe_Shoe1" />
+        <AssociationConnector Association="wardrobeModel.FK_Top_Top" />
+        <AssociationConnector Association="wardrobeModel.FK_Wardrobe_Top1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

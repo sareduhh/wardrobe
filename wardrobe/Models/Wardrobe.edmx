@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="wardrobeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="wardrobeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Accessories">
           <Key>
             <PropertyRef Name="AccessorieID" />
@@ -77,49 +77,49 @@
         </Association>
         <Association Name="FK_Wardrobe_Accessories">
           <End Role="Accessories" Type="Self.Accessories" Multiplicity="1" />
-          <End Role="Wardrobe" Type="Self.Wardrobe" Multiplicity="0..1" />
+          <End Role="Wardrobe" Type="Self.Wardrobe" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Accessories">
               <PropertyRef Name="AccessorieID" />
             </Principal>
             <Dependent Role="Wardrobe">
-              <PropertyRef Name="WardrobeID" />
+              <PropertyRef Name="AccessorieID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Wardrobe_Bottom">
           <End Role="Bottom" Type="Self.Bottom" Multiplicity="1" />
-          <End Role="Wardrobe" Type="Self.Wardrobe" Multiplicity="0..1" />
+          <End Role="Wardrobe" Type="Self.Wardrobe" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Bottom">
               <PropertyRef Name="BottomID" />
             </Principal>
             <Dependent Role="Wardrobe">
-              <PropertyRef Name="WardrobeID" />
+              <PropertyRef Name="BottomID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Wardrobe_Shoe">
           <End Role="Shoe" Type="Self.Shoe" Multiplicity="1" />
-          <End Role="Wardrobe" Type="Self.Wardrobe" Multiplicity="0..1" />
+          <End Role="Wardrobe" Type="Self.Wardrobe" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Shoe">
               <PropertyRef Name="ShoeID" />
             </Principal>
             <Dependent Role="Wardrobe">
-              <PropertyRef Name="WardrobeID" />
+              <PropertyRef Name="ShoeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Wardrobe_Top">
           <End Role="Top" Type="Self.Top" Multiplicity="1" />
-          <End Role="Wardrobe" Type="Self.Wardrobe" Multiplicity="0..1" />
+          <End Role="Wardrobe" Type="Self.Wardrobe" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Top">
               <PropertyRef Name="TopID" />
             </Principal>
             <Dependent Role="Wardrobe">
-              <PropertyRef Name="WardrobeID" />
+              <PropertyRef Name="TopID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -150,8 +150,7 @@
             <End Role="Wardrobe" EntitySet="Wardrobe" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="wardrobeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -167,6 +166,7 @@
           <Property Name="Season" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Occasion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Wardrobe" Relationship="Self.FK_Wardrobe_Accessories" FromRole="Accessories" ToRole="Wardrobe" />
+          <NavigationProperty Name="Wardrobes" Relationship="wardrobeModel.FK_Wardrobe_Accessories1" FromRole="Accessory" ToRole="Wardrobe" />
         </EntityType>
         <EntityType Name="Bottom">
           <Key>
@@ -180,6 +180,7 @@
           <Property Name="Season" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Occasion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Wardrobe" Relationship="Self.FK_Wardrobe_Bottom" FromRole="Bottom" ToRole="Wardrobe" />
+          <NavigationProperty Name="Wardrobes" Relationship="wardrobeModel.FK_Wardrobe_Bottom1" FromRole="Bottom" ToRole="Wardrobe" />
         </EntityType>
         <EntityType Name="Shoe">
           <Key>
@@ -193,6 +194,7 @@
           <Property Name="Season" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Occasion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Wardrobe" Relationship="Self.FK_Wardrobe_Shoe" FromRole="Shoe" ToRole="Wardrobe" />
+          <NavigationProperty Name="Wardrobes" Relationship="wardrobeModel.FK_Wardrobe_Shoe1" FromRole="Shoe" ToRole="Wardrobe" />
         </EntityType>
         <EntityType Name="Top">
           <Key>
@@ -206,6 +208,9 @@
           <Property Name="Season" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Occasion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Wardrobe" Relationship="Self.FK_Wardrobe_Top" FromRole="Top" ToRole="Wardrobe" />
+          <NavigationProperty Name="Top1" Relationship="wardrobeModel.FK_Top_Top" FromRole="Top" ToRole="Top1" />
+          <NavigationProperty Name="Top2" Relationship="wardrobeModel.FK_Top_Top" FromRole="Top1" ToRole="Top" />
+          <NavigationProperty Name="Wardrobes" Relationship="wardrobeModel.FK_Wardrobe_Top1" FromRole="Top" ToRole="Wardrobe" />
         </EntityType>
         <EntityType Name="Wardrobe">
           <Key>
@@ -220,6 +225,10 @@
           <NavigationProperty Name="Bottom" Relationship="Self.FK_Wardrobe_Bottom" FromRole="Wardrobe" ToRole="Bottom" />
           <NavigationProperty Name="Shoe" Relationship="Self.FK_Wardrobe_Shoe" FromRole="Wardrobe" ToRole="Shoe" />
           <NavigationProperty Name="Top" Relationship="Self.FK_Wardrobe_Top" FromRole="Wardrobe" ToRole="Top" />
+          <NavigationProperty Name="Accessory1" Relationship="wardrobeModel.FK_Wardrobe_Accessories1" FromRole="Wardrobe" ToRole="Accessory" />
+          <NavigationProperty Name="Bottom1" Relationship="wardrobeModel.FK_Wardrobe_Bottom1" FromRole="Wardrobe" ToRole="Bottom" />
+          <NavigationProperty Name="Shoe1" Relationship="wardrobeModel.FK_Wardrobe_Shoe1" FromRole="Wardrobe" ToRole="Shoe" />
+          <NavigationProperty Name="Top1" Relationship="wardrobeModel.FK_Wardrobe_Top1" FromRole="Wardrobe" ToRole="Top" />
         </EntityType>
         <Association Name="FK_Wardrobe_Accessories">
           <End Role="Accessories" Type="Self.Accessory" Multiplicity="1" />
@@ -291,7 +300,87 @@
             <End Role="Top" EntitySet="Tops" />
             <End Role="Wardrobe" EntitySet="Wardrobes" />
           </AssociationSet>
+          <AssociationSet Name="FK_Wardrobe_Accessories1" Association="wardrobeModel.FK_Wardrobe_Accessories1">
+            <End Role="Accessory" EntitySet="Accessories" />
+            <End Role="Wardrobe" EntitySet="Wardrobes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Wardrobe_Bottom1" Association="wardrobeModel.FK_Wardrobe_Bottom1">
+            <End Role="Bottom" EntitySet="Bottoms" />
+            <End Role="Wardrobe" EntitySet="Wardrobes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Wardrobe_Shoe1" Association="wardrobeModel.FK_Wardrobe_Shoe1">
+            <End Role="Shoe" EntitySet="Shoes" />
+            <End Role="Wardrobe" EntitySet="Wardrobes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Top_Top" Association="wardrobeModel.FK_Top_Top">
+            <End Role="Top" EntitySet="Tops" />
+            <End Role="Top1" EntitySet="Tops" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Wardrobe_Top1" Association="wardrobeModel.FK_Wardrobe_Top1">
+            <End Role="Top" EntitySet="Tops" />
+            <End Role="Wardrobe" EntitySet="Wardrobes" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK_Wardrobe_Accessories1">
+          <End Type="wardrobeModel.Accessory" Role="Accessory" Multiplicity="1" />
+          <End Type="wardrobeModel.Wardrobe" Role="Wardrobe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accessory">
+              <PropertyRef Name="AccessorieID" />
+            </Principal>
+            <Dependent Role="Wardrobe">
+              <PropertyRef Name="AccessorieID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Wardrobe_Bottom1">
+          <End Type="wardrobeModel.Bottom" Role="Bottom" Multiplicity="1" />
+          <End Type="wardrobeModel.Wardrobe" Role="Wardrobe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bottom">
+              <PropertyRef Name="BottomID" />
+            </Principal>
+            <Dependent Role="Wardrobe">
+              <PropertyRef Name="BottomID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Wardrobe_Shoe1">
+          <End Type="wardrobeModel.Shoe" Role="Shoe" Multiplicity="1" />
+          <End Type="wardrobeModel.Wardrobe" Role="Wardrobe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shoe">
+              <PropertyRef Name="ShoeID" />
+            </Principal>
+            <Dependent Role="Wardrobe">
+              <PropertyRef Name="ShoeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Top_Top">
+          <End Type="wardrobeModel.Top" Role="Top" Multiplicity="1" />
+          <End Type="wardrobeModel.Top" Role="Top1" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Top">
+              <PropertyRef Name="TopID" />
+            </Principal>
+            <Dependent Role="Top1">
+              <PropertyRef Name="TopID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Wardrobe_Top1">
+          <End Type="wardrobeModel.Top" Role="Top" Multiplicity="1" />
+          <End Type="wardrobeModel.Wardrobe" Role="Wardrobe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Top">
+              <PropertyRef Name="TopID" />
+            </Principal>
+            <Dependent Role="Wardrobe">
+              <PropertyRef Name="TopID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->

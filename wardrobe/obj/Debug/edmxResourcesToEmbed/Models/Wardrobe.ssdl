@@ -72,49 +72,49 @@
   </Association>
   <Association Name="FK_Wardrobe_Accessories">
     <End Role="Accessories" Type="Self.Accessories" Multiplicity="1" />
-    <End Role="Wardrobe" Type="Self.Wardrobe" Multiplicity="0..1" />
+    <End Role="Wardrobe" Type="Self.Wardrobe" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Accessories">
         <PropertyRef Name="AccessorieID" />
       </Principal>
       <Dependent Role="Wardrobe">
-        <PropertyRef Name="WardrobeID" />
+        <PropertyRef Name="AccessorieID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Wardrobe_Bottom">
     <End Role="Bottom" Type="Self.Bottom" Multiplicity="1" />
-    <End Role="Wardrobe" Type="Self.Wardrobe" Multiplicity="0..1" />
+    <End Role="Wardrobe" Type="Self.Wardrobe" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Bottom">
         <PropertyRef Name="BottomID" />
       </Principal>
       <Dependent Role="Wardrobe">
-        <PropertyRef Name="WardrobeID" />
+        <PropertyRef Name="BottomID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Wardrobe_Shoe">
     <End Role="Shoe" Type="Self.Shoe" Multiplicity="1" />
-    <End Role="Wardrobe" Type="Self.Wardrobe" Multiplicity="0..1" />
+    <End Role="Wardrobe" Type="Self.Wardrobe" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Shoe">
         <PropertyRef Name="ShoeID" />
       </Principal>
       <Dependent Role="Wardrobe">
-        <PropertyRef Name="WardrobeID" />
+        <PropertyRef Name="ShoeID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Wardrobe_Top">
     <End Role="Top" Type="Self.Top" Multiplicity="1" />
-    <End Role="Wardrobe" Type="Self.Wardrobe" Multiplicity="0..1" />
+    <End Role="Wardrobe" Type="Self.Wardrobe" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Top">
         <PropertyRef Name="TopID" />
       </Principal>
       <Dependent Role="Wardrobe">
-        <PropertyRef Name="WardrobeID" />
+        <PropertyRef Name="TopID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

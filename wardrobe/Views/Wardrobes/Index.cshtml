@@ -1,0 +1,65 @@
+﻿@model IEnumerable<wardrobe.Models.Wardrobe>
+
+@{
+    ViewBag.Title = "Wardrobe Homepage";
+}
+
+<h2>Wardrobe</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+@*<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TopID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BottomID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ShoeID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AccessorieID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Accessory)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Bottom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Shoe)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Top)
+        </th>
+        <th></th>
+    </tr>*@
+
+@foreach (var item in Model)
+{
+    <div class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+            <div class="caption">
+                @*@Html.DisplayFor(modelItem => item.TopID)
+                    @Html.DisplayFor(modelItem => item.BottomID)
+                    @Html.DisplayFor(modelItem => item.ShoeID)
+                    @Html.DisplayFor(modelItem => item.AccessorieID)*@
+                <h3>@Html.DisplayFor(modelItem => item.Accessory.Name)</h3>
+                <p>@Html.DisplayFor(modelItem => item.Bottom.Name)</p>
+                <p>@Html.DisplayFor(modelItem => item.Shoe.Name)</p>
+                <p>@Html.DisplayFor(modelItem => item.Top.Name)</p>
+            </div>
+        </div>
+    </div>
+
+
+    @*@Html.ActionLink("Edit", "Edit", new { id = item.WardrobeID }) |
+        @Html.ActionLink("Details", "Details", new { id = item.WardrobeID }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.WardrobeID })*@
+
+}
+
+
